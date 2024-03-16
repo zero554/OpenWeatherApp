@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.openweatherapp.overview.OverViewViewModel" />
+
+        <variable
+            name="weatherItemAdapter"
+            type="com.example.openweatherapp.adapter.WeatherItemAdapter" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/fragment_overview_text_view"
+            tools:text="LOADING"
+            app:layout_constraintTop_toTopOf="@id/recycler_view"
+            app:layout_constraintBottom_toBottomOf="@id/recycler_view"
+            app:layout_constraintLeft_toLeftOf="@id/recycler_view"
+            app:layout_constraintRight_toRightOf="@id/recycler_view"
+            android:gravity="center"
+            status="@{viewModel.status}"
+            weatherData="@{viewModel.weatherData}"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            weatherData="@{viewModel.weatherData}"
+            weatherItemAdapter="@{weatherItemAdapter}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:adapter="@{weatherItemAdapter}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>
